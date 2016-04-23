@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 from bs4.element import Tag
 from mf2py import backcompat, mf2_classes, implied_properties, parse_property
 from mf2py import temp_fixes
+from mf2py.calendar import parse_result_to_calendar
 from mf2py.version import __version__
 from mf2py.dom_helpers import get_attr, get_children, get_descendents
 import json
@@ -390,3 +391,6 @@ class Parser(object):
                               separators=(', ', ': '))
         else:
             return json.dumps(self.to_dict(filter_by_type))
+
+    def to_icalendar(self):
+        return parse_result_to_calendar(self.to_dict())
