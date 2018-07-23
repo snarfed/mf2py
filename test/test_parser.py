@@ -565,8 +565,8 @@ def test_value_name_whitespace():
         assert_equal(result["items"][i]["properties"]["content"][0]["value"], "One\nTwo\nThree")
         assert_equal(result["items"][i]["properties"]["name"][0], "One\nTwo\nThree")
 
-    assert_equal(result["items"][10]["properties"]["content"][0]["value"], "Hello World      one\n      two\n      three\n    ")
-    assert_equal(result["items"][10]["properties"]["name"][0], "Hello World      one\n      two\n      three\n    ")
+    assert_equal(result["items"][10]["properties"]["content"][0]["value"], "Hello World       one\n      two\n      three\n    ")
+    assert_equal(result["items"][10]["properties"]["name"][0], "Hello World       one\n      two\n      three\n    ")
 
     assert_equal(result["items"][11]["properties"]["content"][0]["value"], "Correct name Correct summary")
     assert_equal(result["items"][11]["properties"]["name"][0], "Correct name")
@@ -768,6 +768,15 @@ def test_backcompat_hentry_content_html():
     entry = result['items'][0]
 
     assert_equal('<p class="entry-summary">This is a summary</p> \n        <p>This is <a href="/tags/mytag" rel="tag">mytag</a> inside content. </p>', entry['properties']['content'][0]['html'])
+
+def test_whitespace_with_tags_inside_property():
+    """Whitespace should only be trimmed at the ends of textContent, not inside.
+
+    https://github.com/microformats/mf2py/issues/112
+    """
+    result = parse_fixture('tag_whitespace_inside_p_value.html')
+    assert_equal(result['items'][0]['properties'],
+                 {'name': ['foo bar']})
 
 
 # experimental features tests
