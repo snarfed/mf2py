@@ -108,9 +108,9 @@ class Parser(object):
             if isinstance(doc, BeautifulSoup):
                 # make a copy of the doc to not change original;
                 #this safely regenerates all children too, but is inefficient (serializes and parses again(
-                self.__doc__ = copy.copy(doc)
+                self.__doc__ = doc
             elif isinstance(doc, Tag):
-                self.__doc__ = deepcopy_tag(doc)
+                self.__doc__ = doc
             else:
                 try:
                     # try the user-given html parser or default html5lib
