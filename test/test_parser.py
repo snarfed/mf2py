@@ -573,8 +573,8 @@ def test_value_name_whitespace():
         assert_equal(result["items"][i]["properties"]["content"][0]["value"], "One\nTwo\nThree")
         assert_equal(result["items"][i]["properties"]["name"][0], "One\nTwo\nThree")
 
-    assert_equal(result["items"][10]["properties"]["content"][0]["value"], "Hello World       one\n      two\n      three\n    ")
-    assert_equal(result["items"][10]["properties"]["name"][0], "Hello World       one\n      two\n      three\n    ")
+    assert_equal(result["items"][10]["properties"]["content"][0]["value"], "Hello World      one\n      two\n      three\n    ")
+    assert_equal(result["items"][10]["properties"]["name"][0], "Hello World      one\n      two\n      three\n    ")
 
     assert_equal(result["items"][11]["properties"]["content"][0]["value"], "Correct name Correct summary")
     assert_equal(result["items"][11]["properties"]["name"][0], "Correct name")
